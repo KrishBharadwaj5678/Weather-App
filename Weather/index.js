@@ -111,7 +111,6 @@ async function get_temp(){
     // Weather Data Retrieve
 
     if(open_weat.status!=200){
-        speak("Please Enter a Valid City Name");
         show_city.textContent="N/A";
         show_temperature.innerText="N/A";
         show_weather_text.innerText="N/A";
@@ -121,6 +120,7 @@ async function get_temp(){
         longitude.innerText="N/A";
         latitude.innerText="N/A";
         icon_weather.src="notFound.png";
+        speak("Please Enter a Valid City Name");
     }
 
     else if(open_weat.status==200){
@@ -182,8 +182,6 @@ async function get_temp(){
         let kelvin_to_celcius=open_json.main.feels_like-273.15;
         show_temperature.innerText=Math.ceil(kelvin_to_celcius)+"°C";
 
-        speak(`Current Temperature of ${open_json.name} is:${Math.ceil(kelvin_to_celcius)} Degree Celsius`);
-
         show_weather_text.innerText=open_json.weather[0].description;
         
         humidity.innerText=open_json.main.humidity+"%";
@@ -196,7 +194,7 @@ async function get_temp(){
 
         latitude.innerText=open_json.coord.lat.toFixed(2);
 
-        console.log(open_json);
+        speak(`Current Temperature of ${open_json.name} is:${Math.ceil(kelvin_to_celcius)} Degree Celsius`);
 
     }
 
@@ -206,12 +204,3 @@ get_temp();
 
 
 }) //closing submit listener
-
-
-
-
-
-
-
-
-
